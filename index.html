@@ -61,7 +61,8 @@
             
             <div class="hidden md:flex space-x-8 text-[11px] uppercase tracking-[0.2em] font-bold">
                 <a href="#servicios" class="hover:text-lime transition">Servicios</a>
-                <a href="#proyectos" class="hover:text-lime transition">Nuestro Trabajo</a>
+                <a href="#proyectos" class="hover:text-lime transition">Portfolio</a>
+                <a href="#campanas" class="hover:text-lime transition">Campañas</a>
                 <a href="#equipo" class="hover:text-lime transition">Nosotros</a>
             </div>
 
@@ -119,49 +120,321 @@
         </div>
     </section>
 
-    <section id="proyectos" class="py-20 bg-slate-900/50">
+    <section id="proyectos" class="py-20 bg-slate-900/50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <span class="text-lime uppercase tracking-[0.3em] text-xs font-black">Portfolio</span>
-            <h2 class="text-4xl md:text-5xl font-black mt-4 mb-16 italic">Soluciones que impulsan resultados</h2>
+            <h2 class="text-4xl md:text-5xl font-black mt-4 mb-16 italic">Páginas que creamos</h2>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="group relative aspect-square overflow-hidden rounded-3xl bg-slate-800">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
-                    <div class="absolute inset-0 flex items-center justify-center bg-purple-600/20 group-hover:bg-purple-600/40 transition">
-                        <i class="fas fa-laptop text-6xl opacity-20"></i>
-                    </div>
-                    <div class="absolute bottom-8 left-8 right-8 z-20 text-left">
-                        <p class="text-lime text-[10px] font-bold uppercase tracking-widest">Paginas Web</p>
-                        <h4 class="text-xl font-black">Landing Pages y Paginas de 5 secciones</h4>
-                    </div>
+            <div class="relative">
+                <div id="carousel-wrapper" class="overflow-hidden">
+                    <div id="carousel-track" class="flex" style="gap:24px; transition: transform 0.5s ease;"></div>
                 </div>
-                <div class="group relative aspect-square overflow-hidden rounded-3xl bg-slate-800">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
-                    <div class="absolute inset-0 flex items-center justify-center bg-lime-600/10 group-hover:bg-lime-600/20 transition">
-                        <i class="fas fa-rocket text-6xl opacity-20"></i>
-                    </div>
-                    <div class="absolute bottom-8 left-8 right-8 z-20 text-left">
-                        <p class="text-lime text-[10px] font-bold uppercase tracking-widest">Paid Media</p>
-                        <h4 class="text-xl font-black">Campaña Meta Ads</h4>
-                    </div>
-                </div>
-                <div class="group relative aspect-square overflow-hidden rounded-3xl bg-slate-800">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
-                    <div class="absolute inset-0 flex items-center justify-center bg-blue-600/10 group-hover:bg-blue-600/20 transition">
-                        <i class="fas fa-search-dollar text-6xl opacity-20"></i>
-                    </div>
-                    <div class="absolute bottom-8 left-8 right-8 z-20 text-left">
-                        <p class="text-lime text-[10px] font-bold uppercase tracking-widest">Consultoría</p>
-                        <h4 class="text-xl font-black">Auditoría de Conversión</h4>
-                    </div>
-                </div>
+
+                <button id="prev-btn" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 w-12 h-12 rounded-full bg-lime text-black flex items-center justify-center hover:scale-110 transition shadow-lg shadow-lime/20">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="next-btn" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 w-12 h-12 rounded-full bg-lime text-black flex items-center justify-center hover:scale-110 transition shadow-lg shadow-lime/20">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
 
-            <div class="mt-12 max-w-3xl mx-auto">
-                <p class="text-xl text-slate-400 italic">"No solo entregamos una página; entregamos un sistema de ventas funcionando las 24 horas."</p>
-            </div>
+            <!-- Indicadores -->
+            <div id="carousel-dots" class="flex justify-center gap-2 mt-8"></div>
         </div>
     </section>
+
+    <script>
+        // =============================================
+        // PORTFOLIO — Editá esta lista para agregar
+        // o modificar proyectos en el carousel.
+        //
+        // Campos:
+        //   nombre      → Nombre del cliente / proyecto
+        //   url         → URL del sitio (con https://)
+        //   imagen      → Ruta de la imagen o screenshot
+        //                 Ej: "./images/portfolio/cliente1.jpg"
+        //                 Si está vacío se muestra el nombre en grande
+        //   ubicacion   → Ciudad, Provincia
+        //   descripcion → Descripción breve del negocio
+        // =============================================
+        const proyectos = [
+            {
+                nombre: "RADIADORES CENTRO",
+                url: "https://radiadorescentro.com.ar/",
+                imagen: "./images/pagina-radiadores.jpeg",
+                ubicacion: "Cordoba, Cordoba",
+                descripcion: "Pagina informativa para casa de repuestos."
+            },
+            {
+                nombre: "UNIVERSO DEACON",
+                url: "https://universodeacon.com/",
+                imagen: "./images/pagina-deacon.jpeg",
+                ubicacion: "San Nicolas, Buenos Aires",
+                descripcion: "Pagina informativa."
+            },
+            {
+                nombre: "AMAPOLA",
+                url: "https://nachovitello.github.io/AMAPOLA/",
+                imagen: "./images/pagina-amapola.jpeg",
+                ubicacion: "Cordoba, Cordoba",
+                descripcion: "Tienda online de calzado."
+            },
+            {
+                nombre: "DONLATTA HAIRCUTS",
+                url: "#",
+                imagen: "./images/pagina-donlatta.jpeg",
+                ubicacion: "Cordoba, Cordoba",
+                descripcion: "Sistema de gestión para peluqueria."
+            },
+        ];
+        // =============================================
+
+        const track    = document.getElementById('carousel-track');
+        const dotsEl   = document.getElementById('carousel-dots');
+        const wrapper  = document.getElementById('carousel-wrapper');
+        let current    = 0;
+
+        function getVisible() {
+            return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+        }
+
+        function maxIndex() {
+            return Math.max(0, proyectos.length - getVisible());
+        }
+
+        // Construir tarjetas
+        proyectos.forEach((p, i) => {
+            const card = document.createElement('a');
+            card.href   = p.url;
+            card.target = p.url !== '#' ? '_blank' : '_self';
+            card.rel    = 'noopener noreferrer';
+            card.className = 'portfolio-card group relative rounded-3xl overflow-hidden flex-shrink-0 cursor-pointer';
+            card.style.cssText = 'aspect-ratio:3/4; background:linear-gradient(135deg,#0f2460 0%,#1a3a8a 50%,#0d1b4b 100%);';
+
+            const patternDiv = document.createElement('div');
+            patternDiv.className = 'absolute inset-0 opacity-10';
+            patternDiv.style.cssText = 'background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:20px 20px;';
+
+            const centerDiv = document.createElement('div');
+            centerDiv.className = 'absolute inset-0 flex items-center justify-center p-8';
+
+            if (p.imagen) {
+                const img = document.createElement('img');
+                img.src = p.imagen;
+                img.alt = p.nombre;
+                img.className = 'absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500';
+                card.appendChild(img);
+            } else {
+                const nameEl = document.createElement('span');
+                nameEl.className = 'text-white text-2xl font-black text-center leading-tight';
+                nameEl.textContent = p.nombre;
+                centerDiv.appendChild(nameEl);
+            }
+
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'absolute bottom-0 left-0 right-0 p-6 text-left';
+            infoDiv.style.background = 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)';
+            infoDiv.innerHTML = `
+                <p class="text-lime text-[10px] font-bold uppercase tracking-widest mb-1">${p.ubicacion}</p>
+                <h4 class="text-lg font-black text-white leading-snug">${p.nombre}</h4>
+                <p class="text-slate-300 text-xs mt-1 italic leading-relaxed">${p.descripcion}</p>
+            `;
+
+            const hoverDiv = document.createElement('div');
+            hoverDiv.className = 'absolute inset-0 bg-lime/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center';
+            hoverDiv.innerHTML = '<span class="bg-lime text-black font-black px-6 py-2.5 rounded-full text-sm shadow-lg">Ver Sitio →</span>';
+
+            if (p.imagen) {
+                card.append(centerDiv, infoDiv, hoverDiv);
+            } else {
+                card.append(patternDiv, centerDiv, infoDiv, hoverDiv);
+            }
+            track.appendChild(card);
+        });
+
+        // Dots
+        proyectos.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === 0 ? 'bg-lime w-6' : 'bg-white/30');
+            dot.addEventListener('click', () => { current = Math.min(i, maxIndex()); update(); });
+            dotsEl.appendChild(dot);
+        });
+
+        function update() {
+            const cards    = track.querySelectorAll('.portfolio-card');
+            const visible  = getVisible();
+            const cardW    = cards[0] ? cards[0].offsetWidth + 24 : 0;
+            track.style.transform = `translateX(-${current * cardW}px)`;
+
+            // Actualizar dots
+            const dots = dotsEl.querySelectorAll('button');
+            dots.forEach((d, i) => {
+                d.className = 'h-2 rounded-full transition-all duration-300 ' + (i === current ? 'bg-lime w-6' : 'bg-white/30 w-2');
+            });
+        }
+
+        function setCardWidths() {
+            const cards   = track.querySelectorAll('.portfolio-card');
+            const visible = getVisible();
+            const gap     = 24;
+            const totalW  = wrapper.offsetWidth;
+            const cardW   = (totalW - gap * (visible - 1)) / visible;
+            cards.forEach(c => { c.style.width = cardW + 'px'; });
+            if (current > maxIndex()) current = maxIndex();
+            update();
+        }
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (current < maxIndex()) { current++; update(); }
+        });
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (current > 0) { current--; update(); }
+        });
+
+        window.addEventListener('resize', setCardWidths);
+        setCardWidths();
+    </script>
+
+    <section id="campanas" class="py-20 bg-slate-950 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <span class="text-lime uppercase tracking-[0.3em] text-xs font-black">Paid Media</span>
+            <h2 class="text-4xl md:text-5xl font-black mt-4 mb-16 italic">Empresas que confiaron en nosotros</h2>
+
+            <div class="relative">
+                <div id="carousel2-wrapper" class="overflow-hidden">
+                    <div id="carousel2-track" class="flex" style="gap:24px; transition: transform 0.5s ease;"></div>
+                </div>
+
+                <button id="prev2-btn" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 w-12 h-12 rounded-full bg-lime text-black flex items-center justify-center hover:scale-110 transition shadow-lg shadow-lime/20">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="next2-btn" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 w-12 h-12 rounded-full bg-lime text-black flex items-center justify-center hover:scale-110 transition shadow-lg shadow-lime/20">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div id="carousel2-dots" class="flex justify-center gap-2 mt-8"></div>
+        </div>
+    </section>
+
+    <script>
+        // =============================================
+        // CLIENTES CAMPAÑAS PAGAS — Editá esta lista
+        //
+        // Campos:
+        //   nombre  → Nombre de la empresa
+        //   imagen  → Ruta del logo o imagen
+        //             Ej: "./images/clientes/empresa1.png"
+        //             Si está vacío muestra el nombre en grande
+        // =============================================
+        const clientes = [
+            {
+                nombre: "FELIZ VIAJE",
+                imagen: "./images/inst-felizviaje.png"
+            },
+            {
+                nombre: "CASCARITAS FOTOGRAFIAS",
+                imagen: "./images/inst-cascaritas.png"
+            },
+            {
+                nombre: "GESTALT",
+                imagen: "./images/inst-gestalt.png"
+            },
+            
+        ];
+        // =============================================
+
+        const track2   = document.getElementById('carousel2-track');
+        const dots2El  = document.getElementById('carousel2-dots');
+        const wrapper2 = document.getElementById('carousel2-wrapper');
+        let current2   = 0;
+
+        function getVisible2() {
+            return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+        }
+
+        function maxIndex2() {
+            return Math.max(0, clientes.length - getVisible2());
+        }
+
+        clientes.forEach((c) => {
+            const card = document.createElement('div');
+            card.className = 'cliente-card group relative rounded-3xl overflow-hidden flex-shrink-0';
+            card.style.cssText = 'aspect-ratio:1/1; background:linear-gradient(135deg,#0f2460 0%,#1a3a8a 50%,#0d1b4b 100%);';
+
+            const pattern = document.createElement('div');
+            pattern.className = 'absolute inset-0 opacity-10';
+            pattern.style.cssText = 'background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:20px 20px;';
+
+            const center = document.createElement('div');
+            center.className = 'absolute inset-0 flex items-center justify-center p-8';
+
+            if (c.imagen) {
+                const img = document.createElement('img');
+                img.src = c.imagen;
+                img.alt = c.nombre;
+                img.className = 'absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500';
+                card.appendChild(img);
+            } else {
+                const nameEl = document.createElement('span');
+                nameEl.className = 'text-white text-2xl font-black text-center leading-tight group-hover:text-lime transition-colors duration-300';
+                nameEl.textContent = c.nombre;
+                center.appendChild(nameEl);
+            }
+
+            const bottom = document.createElement('div');
+            bottom.className = 'absolute bottom-0 left-0 right-0 p-4 text-center';
+            bottom.style.background = 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)';
+            bottom.innerHTML = `<p class="text-white text-sm font-bold">${c.nombre}</p>`;
+
+            if (c.imagen) {
+                card.append(center, bottom);
+            } else {
+                card.append(pattern, center, bottom);
+            }
+            track2.appendChild(card);
+        });
+
+        clientes.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'h-2 rounded-full transition-all duration-300 ' + (i === 0 ? 'bg-lime w-6' : 'bg-white/30 w-2');
+            dot.addEventListener('click', () => { current2 = Math.min(i, maxIndex2()); update2(); });
+            dots2El.appendChild(dot);
+        });
+
+        function update2() {
+            const cards   = track2.querySelectorAll('.cliente-card');
+            const cardW   = cards[0] ? cards[0].offsetWidth + 24 : 0;
+            track2.style.transform = `translateX(-${current2 * cardW}px)`;
+
+            const dots = dots2El.querySelectorAll('button');
+            dots.forEach((d, i) => {
+                d.className = 'h-2 rounded-full transition-all duration-300 ' + (i === current2 ? 'bg-lime w-6' : 'bg-white/30 w-2');
+            });
+        }
+
+        function setCardWidths2() {
+            const cards   = track2.querySelectorAll('.cliente-card');
+            const visible = getVisible2();
+            const gap     = 24;
+            const totalW  = wrapper2.offsetWidth;
+            const cardW   = (totalW - gap * (visible - 1)) / visible;
+            cards.forEach(c => { c.style.width = cardW + 'px'; });
+            track2.style.justifyContent = cards.length <= visible ? 'center' : 'flex-start';
+            if (current2 > maxIndex2()) current2 = maxIndex2();
+            update2();
+        }
+
+        document.getElementById('next2-btn').addEventListener('click', () => {
+            if (current2 < maxIndex2()) { current2++; update2(); }
+        });
+        document.getElementById('prev2-btn').addEventListener('click', () => {
+            if (current2 > 0) { current2--; update2(); }
+        });
+
+        window.addEventListener('resize', setCardWidths2);
+        setCardWidths2();
+    </script>
 
     <section id="equipo" class="py-24 bg-slate-950">
         <div class="max-w-5xl mx-auto px-6">
